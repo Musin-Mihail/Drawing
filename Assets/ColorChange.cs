@@ -10,11 +10,13 @@ public class ColorChange : MonoBehaviour
     Vector3 _vector3;
     public Image _colorBrash;
     public Image _colorFill;
-    public Image _prefab;
+    public SpriteRenderer _prefab;
+
     void Start() 
     {
         _lineColorRect = _lineColor.GetComponent<RectTransform>();
         _vector3 = new Vector3(0,0.5f,0);
+        _colorBrash.color =  _prefab.color;
     }
     void Update()
     {
@@ -27,7 +29,6 @@ public class ColorChange : MonoBehaviour
             _lineColorRect.position -= _vector3;
         }
     }
-    
     public void ColorTest(GameObject _color)
     {
         _prefab.color = _color.GetComponent<Image>().color;

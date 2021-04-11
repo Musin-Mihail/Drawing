@@ -5,34 +5,37 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Part : MonoBehaviour
 {
-    public GameObject _part;
-    Image _color;
+    int _idLayer;
+    float _z;
     void Start() 
     {
-        _color = _part.GetComponent<Image>();
+        _z = 0;
+        _idLayer = GetComponent<SpriteMask>().frontSortingOrder;
     }
     void OnMouseDown()
     {
-        Debug.Log("OnMouseDown");
+        Global._z = _z;
         Global._permission = 1;
-        Global._oldVector2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Global.Part = _part;
+        Global._oldVector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Global.Part = gameObject;
+        Global._idLayer = _idLayer;
         if(Global._fill == 1)
         {
-            Transform[] allChildren = _part.GetComponentsInChildren<Transform>();
-            if(allChildren.Length >1)
+            Transform[] allChildren = gameObject.GetComponentsInChildren<Transform>();
+            if(allChildren.Length > 1)
             {
                 for (int i = 1; i < allChildren.Length; i++)
                 {
                     Destroy(allChildren[i].gameObject);
                 }
             }
-            _part.GetComponent<Image>().color = Global._color;
+            GetComponent<SpriteRenderer>().color = Global._color;
         }
     }
     void OnMouseUp()
     {
-        Debug.Log("OnMouseUP");
+        _z -= 0.001f;
+        Global._oldVector3 = Vector3.zero;
         Global._permission = 0;
         Global.Part = null;
     }

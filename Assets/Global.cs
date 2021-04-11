@@ -10,7 +10,9 @@ public class Global : MonoBehaviour
     static public int _fill;
     static public int _brush;
     static public Color _color;
-    static public Vector2 _oldVector2;
+    static public Vector3 _oldVector3;
+    static public int _idLayer;
+    static public float _z;
     void Start() 
     {
         _permission = 0;
