@@ -14,6 +14,7 @@ public class Part : MonoBehaviour
     }
     void OnMouseDown()
     {
+        Global._countListObject = 0;
         Global._z = _z;
         Global._permission = 1;
         Global._oldVector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -29,11 +30,21 @@ public class Part : MonoBehaviour
                     Destroy(allChildren[i].gameObject);
                 }
             }
-            GetComponent<SpriteRenderer>().color = Global._color;
+            Global._partMaterial.Add(GetComponent<SpriteRenderer>().material);
+            GetComponent<SpriteRenderer>().material = Global._material;
         }
     }
     void OnMouseUp()
     {
+        if(Global._fill == 1)
+        {
+            Global._countListPart.Add(gameObject);
+            Global._countList.Add(12345);
+        }
+        else
+        {
+            Global._countList.Add(Global._countListObject);
+        }
         _z -= 0.001f;
         Global._oldVector3 = Vector3.zero;
         Global._permission = 0;

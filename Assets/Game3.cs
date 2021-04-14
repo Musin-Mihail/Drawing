@@ -9,8 +9,10 @@ public class Game3 : MonoBehaviour
     float _distance;
     void Update()
     {
+        // if(Input.touchCount > 0 && Global.Part != null && Global._fill == 0 && Global._permission == 1)
         if(Input.GetMouseButton(0) && Global.Part != null && Global._fill == 0 && Global._permission == 1)
         {
+            // Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             newPosition.z = Global._z;
             if(Global._oldVector3 == Vector3.zero)
@@ -28,6 +30,8 @@ public class Game3 : MonoBehaviour
                     if(_distance < 0.1f)
                     {
                         GameObject _point = Instantiate(blup,newPosition, Quaternion.identity);
+                        Global._countListObject++;
+                        Global._countListBlup.Add(_point);
                         _point.transform.parent = Global.Part.transform;
                         _point.GetComponent<SpriteRenderer>().sortingOrder = Global._idLayer;
                     }
@@ -37,8 +41,10 @@ public class Game3 : MonoBehaviour
                         _tempPosition.z = Global._z;
                         while(_tempPosition != newPosition)
                         {
-                            _tempPosition = Vector3.MoveTowards(_tempPosition,newPosition, 0.05f);
+                            _tempPosition = Vector3.MoveTowards(_tempPosition,newPosition, 1.0f);
                             GameObject _point = Instantiate(blup,_tempPosition, Quaternion.identity);
+                            Global._countListObject++;
+                            Global._countListBlup.Add(_point);
                             _point.GetComponent<SpriteRenderer>().sortingOrder = Global._idLayer;
                             _point.transform.parent = Global.Part.transform;
                         }
