@@ -38,7 +38,7 @@ public class Game3 : MonoBehaviour
             // else
             // {
                 _distance = Vector2.Distance(Global._oldVector3, newPosition);
-                if(_distance > 0.3f)
+                if(_distance > 0.1f)
                 {        
                     newPosition.z = Global.Part.transform.position.z + Global._z;
                     GameObject _point1 = Instantiate(blupLine,Global._oldVector3, Quaternion.identity);

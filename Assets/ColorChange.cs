@@ -14,6 +14,7 @@ public class ColorChange : MonoBehaviour
     public Image _colorFill;
     public Image _texture;
     public SpriteRenderer _prefab;
+    public SpriteRenderer _prefab2;
     float _maxPosition;
     public GameObject _tileColors;
     public GameObject _tileColorsTexture;
@@ -45,6 +46,7 @@ public class ColorChange : MonoBehaviour
         if(Global._eraser == 0)
         {
             _prefab.material = _color.GetComponent<Image>().material;
+            _prefab2.material = _color.GetComponent<Image>().material;
             Global._material = _color.GetComponent<Image>().material;
         }
         if(Global._brush == 1)
@@ -71,6 +73,7 @@ public class ColorChange : MonoBehaviour
     public void Fill()
     {
         _prefab.material = _colorFill.material;
+        _prefab2.material = _colorFill.material;
         Global._material = _colorFill.material;
         Global._brush = 0;
         Global._pencil = 0;
@@ -83,7 +86,9 @@ public class ColorChange : MonoBehaviour
     public void Brush()
     {
         _prefab.material = _colorBrash.material;
-        _prefab.transform.localScale = new Vector3(1,1,1);
+        _prefab.transform.localScale = new Vector3(10,10,1);
+        _prefab2.material = _colorBrash.material;
+        _prefab2.transform.localScale = new Vector3(10,10,1);
         Global._material = _colorBrash.material;
         Global._brush = 1;
         Global._pencil = 0;
@@ -97,7 +102,9 @@ public class ColorChange : MonoBehaviour
     public void Texture()
     {
         _prefab.material = _texture.material;
-        _prefab.transform.localScale = new Vector3(1,1,1);
+        _prefab.transform.localScale = new Vector3(10,10,1);
+        _prefab2.material = _texture.material;
+        _prefab2.transform.localScale = new Vector3(10,10,1);
         Global._material = _texture.material;
         Global._brush = 0;
         Global._pencil = 0;
@@ -111,7 +118,9 @@ public class ColorChange : MonoBehaviour
     public void Eraser(GameObject _color)
     {
         _prefab.material = _color.GetComponent<Image>().material;
-        _prefab.transform.localScale = new Vector3(1,1,1);
+        _prefab.transform.localScale = new Vector3(10,10,1);
+        _prefab2.material = _color.GetComponent<Image>().material;
+        _prefab2.transform.localScale = new Vector3(10,10,1);
         Global._brush = 0;
         Global._pencil = 0;
         Global._marker = 0;
@@ -122,7 +131,9 @@ public class ColorChange : MonoBehaviour
     public void Pencil()
     {
         _prefab.material = _colorPencil.material;
-        _prefab.transform.localScale = new Vector3(0.2f,0.2f,0.2f);
+        _prefab.transform.localScale = new Vector3(2,2,2);
+        _prefab2.material = _colorPencil.material;
+        _prefab2.transform.localScale = new Vector3(2,2,2);
         Global._material = _colorPencil.material;
         Global._brush = 0;
         Global._pencil = 1;
@@ -136,7 +147,9 @@ public class ColorChange : MonoBehaviour
     public void Marker()
     {
         _prefab.material = _colorMarker.material;
-        _prefab.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+        _prefab.transform.localScale = new Vector3(5,5,5);
+        _prefab2.material = _colorMarker.material;
+        _prefab2.transform.localScale = new Vector3(5,5,5);
         Global._material = _colorMarker.material;
         Global._brush = 0;
         Global._pencil = 0;

@@ -22,5 +22,8 @@ public class Delete : MonoBehaviour
             }
             item.GetComponent<SpriteRenderer>().material = _while;
         }
+        Global._countList.Clear();
+        Global._countListBlup.Clear();
+        Global._countListObject = 0;
     }
 }
