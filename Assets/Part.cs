@@ -15,11 +15,13 @@ public class Part : MonoBehaviour
     void OnMouseDown()
     {
         Global._countListObject = 0;
+        _z -= 0.001f;
         Global._z = _z;
         Global._permission = 1;
-        Global._oldVector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // Global._oldVector3 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Global.Part = gameObject;
-        Global._idLayer = _idLayer;
+        // Global._idLayer = _idLayer;
+        Global._idLayer = GetComponent<SpriteMask>().backSortingOrder;
         if(Global._fill == 1)
         {
             Transform[] allChildren = gameObject.GetComponentsInChildren<Transform>();
@@ -45,8 +47,7 @@ public class Part : MonoBehaviour
         {
             Global._countList.Add(Global._countListObject);
         }
-        _z -= 0.001f;
-        Global._oldVector3 = Vector3.zero;
+        // Global._oldVector3 = Vector3.zero;
         Global._permission = 0;
         Global.Part = null;
     }
